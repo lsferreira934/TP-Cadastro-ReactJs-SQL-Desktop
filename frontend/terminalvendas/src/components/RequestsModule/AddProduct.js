@@ -69,12 +69,16 @@ export default function AddProduct() {
                   <td>{valor_venda}</td>
                   <td>
                     {/* <Link to={`/novopedido`}> */}
-                    <button type="button" class="btn btn-outline-success">
+                    <button
+                      value={id}
+                      type="button"
+                      class="btn btn-outline-success"
+                    >
                       <svg
                         value={id}
                         onClick={handleAddProduct}
                         style={{ color: 'green' }}
-                        width="2em"
+                        width="3em"
                         height="2em"
                         viewBox="0 0 16 16"
                         class="bi bi-plus-circle"
