@@ -1,0 +1,10 @@
+#update {
+  color: blue;
+}
+#delete {
+  color: red;
+}
+
+#buttonDelete {
+  width: 40px;
+}
