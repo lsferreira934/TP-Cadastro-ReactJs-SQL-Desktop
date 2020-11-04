@@ -34,7 +34,7 @@ namespace TP_Cadastro___Desktop
         //String de conexão
         public static MySqlConnection ConnectionKey()
         {
-            return conexao = new MySqlConnection("Server=localhost;Database=db_sistema_venda;Uid=root;Pwd=root");
+            return conexao = new MySqlConnection("Server=ls-67fad9d658bbd6ecb7e62def7d6e089e11bd5d5c.cvjvzngnmdlt.us-east-1.rds.amazonaws.com;Database=db_sistema_venda;Uid=dbmasteruser;Pwd=12345678");
         }
 
         
