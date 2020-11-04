@@ -5,7 +5,7 @@ import Nav from './components/Nav';
 import GetRequests from './components/RequestsModule/Get';
 import CreateRequests from './components/RequestsModule/Create';
 import CreateUserRequests from './components/RequestsModule/CreateUser';
-
+import AddProductRequests from './components/RequestsModule/AddProduct';
 //Modulo Cliente
 import UpdateUser from './components/UserModule/Update';
 import CreateUser from './components/UserModule/Create';
@@ -31,6 +31,7 @@ export default function App() {
           <Route path="/" exact component={GetRequests} />
           <Route path="/novoPedido" component={CreateRequests} />
           <Route path="/novocliente" component={CreateUserRequests} />
+          <Route path="/adicionarproduto" component={AddProductRequests} />
           <Route path="/cliente" component={GetUser} />
           <Route path="/alterarCliente/:id" component={UpdateUser} />
           <Route path="/cadastrarCliente" component={CreateUser} />

@@ -35,7 +35,7 @@ export default function OrderUser({ children, numberOrder, handleClick }) {
   return (
     <>
       <div>
-        <Link to="/cadastrarCliente">
+        <Link to="/adicionarproduto">
           <button
             type="button"
             className="btn btn-primary"
