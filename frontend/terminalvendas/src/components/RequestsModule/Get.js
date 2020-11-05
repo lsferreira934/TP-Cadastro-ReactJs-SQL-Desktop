@@ -6,23 +6,25 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 export default function Requests() {
   const [requests, setRequests] = useState([]);
+
   useEffect(() => {
     const apiAsync = async () => {
       try {
-        const { data } = await api.get(`/relatoriocompras`);
+        const { data } = await api.get(`/compras`);
         setRequests(data);
-        // console.log(data);
-        const vetor = [];
-        requests.filter((filter) => {
-          if (filter.Codigo_Pedido === filter.Codigo_Pedido)
-            vetor.push({
-              Produto: filter.Produto,
-              Quantidade: filter.Quantidade,
-              Valor_Unitário: filter.Valor_Unitário,
-              Valor_Total: filter.Valor_Total,
-            });
-        });
-        console.log(vetor);
+        console.log(data);
+        // const vetor = [];
+        // requests.filter((filter) => {
+        //   if (filter.Codigo_Pedido === 1)
+        //     vetor.push({
+        //       Produto: filter.Produto,
+        //       Quantidade: filter.Quantidade,
+        //       Valor_Unitário: filter.Valor_Unitário,
+        //       Valor_Total: filter.Valor_Total,
+        //     });
+        // });
+
+        // console.log(vetor);
       } catch (error) {
         console.log(error);
       }

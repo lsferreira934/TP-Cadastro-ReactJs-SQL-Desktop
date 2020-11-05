@@ -7,17 +7,28 @@ import api from '../services/api';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import css from '../css/get.module.css';
 
-export default function OrderUser({ children, numberOrder, handleClick }) {
+export default function OrderUser({
+  children,
+  numberOrder,
+  handleClick,
+  handleIdProduct,
+}) {
   const [orderAll, setOrderAll] = useState([]);
   const [valueTotal, setValueTotal] = useState();
 
   const handleValueTotal = () => {
     handleClick(valueTotal);
   };
+
+  const handleClickProduct = (data) => {
+    console.log(data);
+    handleIdProduct(data);
+  };
+
   useEffect(() => {
     try {
       const apiAsync = async () => {
-        const { data } = await api.get(`relatorio/${numberOrder}`);
+        const { data } = await api.get(`relatorio/${160}`);
         console.log(data);
         setOrderAll(data);
         if (data.length > 0) {
@@ -37,6 +48,7 @@ export default function OrderUser({ children, numberOrder, handleClick }) {
       <div>
         <Link to="/adicionarproduto">
           <button
+            numberIdProduct={handleClickProduct}
             type="button"
             className="btn btn-primary"
             style={{ marginTop: '10px', marginBottom: '10px' }}
