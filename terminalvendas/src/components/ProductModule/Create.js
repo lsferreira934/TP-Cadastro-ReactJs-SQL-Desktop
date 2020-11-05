@@ -48,7 +48,7 @@ export default function Create() {
             </div>
 
             <div className="form-container">
-              <label for="inputQuantidade">Quantida</label>
+              <label for="inputQuantidade">Quantidade</label>
 
               <Input
                 name="qtd_estoque"
@@ -62,7 +62,7 @@ export default function Create() {
               />
             </div>
 
-            <div className="form-group">
+            <div className="form-container">
               <label for="inputCompra">Valor de custo</label>
               <Input
                 name="valor_custo"
@@ -75,7 +75,7 @@ export default function Create() {
                 placeholder="100.00"
               />
             </div>
-            <div className="form-group">
+            <div className="form-container">
               <label for="inputVenda">Valor de Venda</label>
               <Input
                 type="number"

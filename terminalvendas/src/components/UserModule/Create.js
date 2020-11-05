@@ -35,8 +35,8 @@ export default function Create() {
       <div id={css.form}>
        
           <Form onSubmit={handleSubmit}>
-              <div className="row">
-                <div className="form-group  ">
+              <div className="form">
+                <div className="form">
                   <label for="inputName">Nome</label>
                   <Input
                     type="text"
@@ -49,7 +49,7 @@ export default function Create() {
              
 
 
-                <div className="form-group ">
+                <div className="form-container">
                   <label for="inputAddress">Endereço</label>
                   <Input
                     name="end"
@@ -63,8 +63,7 @@ export default function Create() {
 
               </div>
             
-              <div className="row">
-                <div className="form-group ">
+              <div className="form-container">
                   <label for="inputPhone">Telefone</label>
                   <Input
                     name="telefone"
@@ -76,7 +75,7 @@ export default function Create() {
                 </div>
               
               
-                <div className="form-group ">
+                <div className="form-container">
                   <label for="inputEmail">Email</label>
                   <Input
                     type="email"
@@ -86,8 +85,6 @@ export default function Create() {
                     placeholder="Ex: email@email.com"
                   />
                 </div>
-            
-              </div>
             <Link to="/cliente">
               <button type="submit" className="btn btn-danger">
                 Voltar

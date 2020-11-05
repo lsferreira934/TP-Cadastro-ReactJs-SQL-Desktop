@@ -1,25 +1,23 @@
 #form { 
   font-size: 100px;
-  color: #066a75;
   padding: 10px 0;
   font-family: Sans-serif;
   font-weight: bold;
-  text-align: center;
+  text-align: left;
   display: block;
   color:#242323;
   font-size:18px;
-  float:center;
-  width:100px;
   text-align:right;
   padding:15px 15px 0 0;
 
   padding:30px 30px;
-  width:500px;
-  background:#e0dfdf;
-  border-bottom: 1px double #b4b4b4;
-  border-top: 1px double #b4b4b4;
-  border-left:1px double #b4b4b4;
-  border-right:1px double #b4b4b4;
+  width:650px; 
+  background:#ccc8c8;
+  border-bottom: 1px double #001c1d;
+  border-top: 1px double #001c1d;
+  border-left:1px double  #001c1d;
+  border-right:1px double #001c1d;
+  border-radius: 10px;
 
   
   
@@ -54,13 +52,14 @@ p:first-child{
   margin: 0px;
 }
 label{
-  display: center;
+  display:inline-block;
+  font-family: Sans-serif;
   color:#181818;
-  font-size:20px;
-  float:center;
-  width:100px;
-  text-align:right;
-  padding:15px 15px 0 0;
+  font-size:16px;
+  float:left;
+  text-align:left;
+  padding:12px 12px 3 3;
+  
 }
 
 
