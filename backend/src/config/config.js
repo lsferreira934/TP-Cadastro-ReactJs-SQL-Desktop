@@ -18,6 +18,7 @@
 //     },
 //   },
 // };
+
 module.exports = {
   development: {
     database: {

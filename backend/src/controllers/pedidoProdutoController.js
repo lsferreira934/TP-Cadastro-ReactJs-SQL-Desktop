@@ -66,7 +66,7 @@ exports.Show = async (req, res) => {
 exports.Index = async (req, res) => {
   try {
     const idPesquisa = req.body.Codigo_Pedido;
-    const verificaId = await PedidoProduto.findOne({
+    const verificaId = await Pedido.findOne({
       where: { id_pedido: idPesquisa },
     });
 
@@ -74,7 +74,7 @@ exports.Index = async (req, res) => {
       return res.json({ error: `Não existe compra com o código solicitado` });
     }
 
-    res.send(verificaId);
+    //res.send(idPesquisa);
 
     const [pesquisaCompra] = await sequelize.query(
       `select * from vw_relatorioCompra where Codigo_Pedido = ${idPesquisa}`
@@ -107,7 +107,7 @@ exports.Compras = async (req, res) => {
 exports.PedidoDetalhe = async (req, res) => {
   try {
     const idPesquisa = req.body.Codigo_Pedido;
-    const verificaId = await PedidoProduto.findOne({
+    const verificaId = await Pedido.findOne({
       where: { id_pedido: idPesquisa },
     });
 
