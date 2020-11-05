@@ -28,11 +28,12 @@
   border-radius: 10px;
 }
 #logo {
+  border-radius: 10px;
   display: block;
   padding-bottom: 1em;
   font-size: 1em;
   color: rgba(0,0,0,0.6);
-  border-radius: 10px;
+ 
 }
 
 #logoText {

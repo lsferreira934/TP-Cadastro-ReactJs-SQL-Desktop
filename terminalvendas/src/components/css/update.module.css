@@ -1,36 +1,28 @@
 #form { 
-  margin:5;
-  padding:5;
-  font-family: Arial,sans-serif;
-  
-    width: 5%;
-    margin-top: 40px;
-    padding: 100px;    
-    border: 1px solid #b2b2b2;
-    padding: 8px 5px;
-    color: #fff;
-    font-size: 20px;  
-    border: 1px solid #fff;   
-    margin-bottom: 10px;  
-    text-shadow: 0 1px 1px #333;
-    
-    -webkit-border-radius: 5px;
-    border-radius: 5px;
-  
-      width: 60%;
-  margin-top: 10px;
-  padding: 10px;    
-  border: 1px solid #b2b2b2;
-  
-  -webkit-border-radius: 3px;
-  border-radius: 10px;
+  font-size: 100px;
+  color: #066a75;
+  padding: 10px 0;
+  font-family: Sans-serif;
+  font-weight: bold;
+  text-align: center;
+  display: block;
+  color:#242323;
+  font-size:18px;
+  float:center;
+  width:100px;
+  text-align:right;
+  padding:15px 15px 0 0;
+
+  padding:30px 30px;
+  width:500px;
+  background:#e0dfdf;
+  border-bottom: 1px double #b4b4b4;
+  border-top: 1px double #b4b4b4;
+  border-left:1px double #b4b4b4;
+  border-right:1px double #b4b4b4;
 
   
-  -webkit-transition: all 0.2s linear;
-  transition: all 0.2s linear;
-
   
-
 }
 
 body{
@@ -41,10 +33,19 @@ h2{
   font-size: 48px;
   color: #066a75;
   padding: 10px 0;
-  font-family: Arial,sans-serif;
+  font-family: Sans-serif;
   font-weight: bold;
   text-align: center;
 }
+
+h1{
+	font-size: 48px;
+	color: #066a75;
+	padding: 10px 0;
+	font-family: Sans-serif;
+	font-weight: bold;
+	text-align: center;
+  }
 
 p{
   margin-bottom:15px;
@@ -53,8 +54,46 @@ p:first-child{
   margin: 0px;
 }
 label{
-  color: #262727;
-  position: Center;
-  
-  
+  display: center;
+  color:#181818;
+  font-size:20px;
+  float:center;
+  width:100px;
+  text-align:right;
+  padding:15px 15px 0 0;
+}
+
+
+/* Delete de produtos  */
+#formdelete {
+  margin:0 auto;
+		width:700px;
+		position:relative;
+		top:50px;
+		border:1px solid #727272;
+	}
+	
+
+	
+	
+	
+	div.formdelete label span {
+		display: block;
+		color:#242323;
+		font-size:18px;
+		float:left;
+		width:100px;
+		text-align:right;
+		padding:15px 15px 0 0;
+	}
+	
+	div.box20 .input_text {
+		padding:10px 10px;
+		width:500px;
+		background:#e0dfdf;
+		border-bottom: 1px double #b4b4b4;
+		border-top: 1px double #b4b4b4;
+		border-left:1px double #b4b4b4;
+		border-right:1px double #b4b4b4;
+
 }

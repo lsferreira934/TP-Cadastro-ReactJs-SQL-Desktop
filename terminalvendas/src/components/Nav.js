@@ -7,10 +7,10 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 export default function Nav() {
   return (
-    <div style={{ marginBottom: '20px' }}>
+    <div style={{ marginBottom: '25px' }}>
       <nav className="navbar navbar-expand-sm bg-dark navbar-dark">
         <div id={css.logo}>
-          <img src={Jpg} style={{ width: '100px' }} />
+          <img src={Jpg} style={{ width: '110px' }} />
           <Link to="/">
             <h1 id={css.logoText}>Terminal Vendas</h1>
           </Link>
