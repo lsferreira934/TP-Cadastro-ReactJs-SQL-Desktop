@@ -79,7 +79,7 @@ exports.Index = async (req, res) => {
     const [pesquisaCompra] = await sequelize.query(
       `select * from vw_relatorioCompra where Codigo_Pedido = ${idPesquisa}`
     );
-
+    console.log(pesquisaCompra);
     res.json(pesquisaCompra);
   } catch (error) {
     res.status(400).json(`Erro ao buscar relatório: ${error}`);
