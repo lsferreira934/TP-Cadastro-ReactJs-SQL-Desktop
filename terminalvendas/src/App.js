@@ -31,7 +31,10 @@ export default function App() {
           <Route path="/" exact component={GetRequests} />
           <Route path="/novoPedido" component={CreateRequests} />
           <Route path="/novocliente" component={CreateUserRequests} />
-          <Route path="/adicionarproduto" component={AddProductRequests} />
+          <Route
+            path="/adicionarproduto/:id/:num"
+            component={AddProductRequests}
+          />
           <Route path="/cliente" component={GetUser} />
           <Route path="/alterarCliente/:id" component={UpdateUser} />
           <Route path="/cadastrarCliente" component={CreateUser} />

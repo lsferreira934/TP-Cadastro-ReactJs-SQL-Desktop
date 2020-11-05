@@ -44,9 +44,10 @@ export default function Get() {
           <tbody>
             {users.map((user) => {
               const { id, nome, end, telefone, email } = user;
+
               return (
                 <tr key={id}>
-                  <td>{id}</td>
+                  <td>{id} </td>
                   <td>{nome}</td>
                   <td>{end}</td>
                   <td>{telefone}</td>

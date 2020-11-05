@@ -8,22 +8,23 @@ import OrderUser from '../RequestsModule/OrderUser';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import css from '../css/get.module.css';
 
-export default function Create(props) {
+export default function Create() {
   const [allRequests, setAllRequests] = useState([]);
   const [numberOrder, setNumberOrder] = useState();
   const [redirectCheck, setRedirecCheck] = useState(false);
   const [selectUser, setSelectUser] = useState([]);
   const [valueTotal, setValueTotal] = useState();
+  const [userId, setUserId] = useState();
 
   useEffect(() => {
     try {
       const apiAsync = async () => {
         const { data } = await api.get(`/todospedidos`);
-
         setAllRequests(data);
         const mapPedido = data.map((pedido) => pedido.id_pedido);
         let number = Math.max.apply(null, mapPedido) + 1;
-        number = 1;
+
+        if (number === -Infinity) number = 1;
         setNumberOrder(number);
       };
       apiAsync();
@@ -36,14 +37,14 @@ export default function Create(props) {
     try {
       const apiAsync = async () => {
         const { data } = await api.get(`/cliente`);
-
         setSelectUser(data);
+        console.log(userId);
       };
       apiAsync();
     } catch (error) {
       console.log(error);
     }
-  }, []);
+  }, [userId]);
 
   useEffect(() => {
     try {
@@ -67,6 +68,8 @@ export default function Create(props) {
   };
   const handleSelectOption = (select) => {
     const selectedUser = select.target.value;
+    // console.log(Number(selectedUser.split('-')[0]));
+    setUserId(Number(selectedUser.split('-')[0]));
   };
 
   const handleValueTotal = (value) => {
@@ -82,13 +85,7 @@ export default function Create(props) {
               <label for="select">PEDIDO Nº </label>
               <input
                 type="text"
-                value={
-                  numberOrder === 1
-                    ? numberOrder < 10
-                      ? '0' + numberOrder
-                      : numberOrder
-                    : 0
-                }
+                value={numberOrder}
                 disabled
                 style={{ width: '30px' }}
               />
@@ -110,10 +107,19 @@ export default function Create(props) {
             <div className="col-4 center">
               <br />
               <label for="select">ADICIONAR CLIENTE</label>
-              <select className="custom-select" id="select">
+              <select
+                onChange={handleSelectOption}
+                className="custom-select"
+                id="select"
+              >
+                <option>Selecione um cliente</option>
                 {selectUser.map((user) => {
-                  const { id, nome, end, telefone, email } = user;
-                  return <option key={id}>{nome}</option>;
+                  const { id, nome } = user;
+                  return (
+                    <option key={id}>
+                      {id} - {nome}
+                    </option>
+                  );
                 })}
               </select>
             </div>
@@ -135,8 +141,9 @@ export default function Create(props) {
           <div className="row">
             <div className="col-10">
               <OrderUser
-                numberOrder={numberOrder}
+                qtdrOrder={numberOrder}
                 handleClick={handleValueTotal}
+                idUserNumber={userId}
               ></OrderUser>
             </div>
           </div>
@@ -145,10 +152,10 @@ export default function Create(props) {
             <div className="col-4">
               <button
                 type="submit"
-                className="btn btn-info"
+                className="btn btn-warning"
                 style={{ marginRight: '10px' }}
               >
-                Novo Pedido
+                Finalizar pedido
               </button>
 
               <Link to="/novocliente">
@@ -159,6 +166,7 @@ export default function Create(props) {
                   Cadastrar cliente
                 </button>
               </Link>
+
               <Link to="/">
                 <button
                   type="submit"

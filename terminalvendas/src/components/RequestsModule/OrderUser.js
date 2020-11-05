@@ -1,36 +1,25 @@
 import React, { useState, useEffect } from 'react';
 import { Link, Redirect } from 'react-router-dom';
-import { Form } from '@unform/web';
-import Input from '../Form/Input';
 import api from '../services/api';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import css from '../css/get.module.css';
 
-export default function OrderUser({
-  children,
-  numberOrder,
-  handleClick,
-  handleIdProduct,
-}) {
+export default function OrderUser({ qtdrOrder, handleClick, idUserNumber }) {
   const [orderAll, setOrderAll] = useState([]);
   const [valueTotal, setValueTotal] = useState();
+  const [valueInput, setValueInput] = useState();
 
   const handleValueTotal = () => {
     handleClick(valueTotal);
   };
 
-  const handleClickProduct = (data) => {
-    console.log(data);
-    handleIdProduct(data);
-  };
-
   useEffect(() => {
     try {
       const apiAsync = async () => {
-        const { data } = await api.get(`relatorio/${160}`);
-        console.log(data);
+        const { data } = await api.get(`relatorio/${qtdrOrder}`);
         setOrderAll(data);
+
         if (data.length > 0) {
           const totalOrder = data
             .map((item) => item.valor_total)
@@ -42,13 +31,22 @@ export default function OrderUser({
       };
       apiAsync();
     } catch (error) {}
-  }, [valueTotal]);
+  }, [valueTotal, qtdrOrder]);
+
+  const productItemSelect = (props) => {
+    console.log(props);
+  };
+
+  const handleInputClick = ({ target }) => {
+    console.log(target.value);
+    setValueInput(target.value);
+  };
+
   return (
     <>
       <div>
-        <Link to="/adicionarproduto">
+        <Link to={`/adicionarproduto/${idUserNumber}/${qtdrOrder}`}>
           <button
-            numberIdProduct={handleClickProduct}
             type="button"
             className="btn btn-primary"
             style={{ marginTop: '10px', marginBottom: '10px' }}
@@ -82,7 +80,24 @@ export default function OrderUser({
             return (
               <tr key={id}>
                 <td>{id_produto}</td>
-                <td>{quantidade}</td>
+                <td>
+                  <input
+                    onChange={
+                      quantidade !== handleInputClick
+                        ? handleInputClick
+                        : quantidade
+                    }
+                    type="number"
+                    min="1"
+                    max={quantidade}
+                    step="1"
+                    style={{
+                      color: 'black',
+                      width: '60px',
+                      fontSize: '10pt',
+                    }}
+                  />
+                </td>
                 <td>{valor_unidade}</td>
                 <td>{valor_total}</td>
 

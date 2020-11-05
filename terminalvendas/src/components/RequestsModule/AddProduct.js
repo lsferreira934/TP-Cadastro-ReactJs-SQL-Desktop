@@ -5,7 +5,7 @@ import { FaRegPlusSquare } from 'react-icons/fa';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-export default function AddProduct() {
+export default function AddProduct(props) {
   const [products, setProducts] = useState([]);
   const [redirectCheck, setRedirecCheck] = useState(false);
   const [valueInput, setValueInput] = useState();
@@ -25,30 +25,29 @@ export default function AddProduct() {
 
   const handleAddProduct = async (event) => {
     try {
+      const id = props.match.params;
+      const num = props.match.params;
+      console.log(id, num);
       const newData = Number(event.target.textContent);
+      console.log(newData);
       const { data } = await api.get(`produto/${newData}`);
-      console.log(data);
-      const product = {
-        id_cliente: 0,
-        id_pedido: 0,
-        id_produto: data.id,
+
+      const productSelect = {
+        id_cliente: Number(id),
+        id_pedido: 1,
+        id_produto: Number(data.id),
         quantidade: 1,
       };
+      console.log(productSelect);
 
-      // await api
-      //   .post(`/cliente`, newData)
-      //   .then((response) => {})
-      //   .catch((error) => {
-      //     console.log(error.message);
-      //   });
+      await api
+        .post(`/pedidoproduto`, productSelect)
+        .catch((error) => console.log(error.response.request._response));
+
       newData !== 0 ? setRedirecCheck(true) : setRedirecCheck(false);
     } catch (error) {
       console.log(error);
     }
-  };
-  const handleInputClick = ({ target }) => {
-    console.log(target.value);
-    setValueInput(target.value);
   };
 
   return (
@@ -65,7 +64,6 @@ export default function AddProduct() {
               <th>Qtd-Estoque</th>
               <th>Vl-custo</th>
               <th>Vl-Venda</th>
-              <th>Qtd-adcionar</th>
               <th>Selecionar</th>
             </tr>
           </thead>
@@ -78,37 +76,49 @@ export default function AddProduct() {
                 valor_custo,
                 valor_venda,
               } = product;
-              return (
+              return qtd_estoque <= 0 ? (
                 <tr key={id}>
                   <td>{id}</td>
                   <td>{nome}</td>
                   <td>{qtd_estoque}</td>
                   <td>{valor_custo}</td>
                   <td>{valor_venda}</td>
+
                   <td>
-                    <input
-                      onChange={
-                        qtd_estoque !== handleInputClick
-                          ? handleInputClick
-                          : qtd_estoque
-                      }
-                      type="number"
-                      min="1"
-                      max={qtd_estoque}
-                      step="1"
+                    <button
+                      disabled
+                      onClick={handleAddProduct}
+                      type="button"
+                      class="btn btn-success"
                       style={{
-                        color: 'black',
-                        width: '60px',
-                        fontSize: '10pt',
+                        color: 'transparent',
                       }}
-                    />
+                    >
+                      {id}
+                    </button>
+                    {redirectCheck === true ? (
+                      <Redirect to="/novopedido" />
+                    ) : (
+                      redirectCheck
+                    )}
                   </td>
+                </tr>
+              ) : (
+                <tr key={id}>
+                  <td>{id}</td>
+                  <td>{nome}</td>
+                  <td>{qtd_estoque}</td>
+                  <td>{valor_custo}</td>
+                  <td>{valor_venda}</td>
+
                   <td>
                     <button
                       onClick={handleAddProduct}
-                      value={id}
                       type="button"
-                      class="btn btn-outline-success"
+                      class="btn btn-success"
+                      style={{
+                        color: 'transparent',
+                      }}
                     >
                       {id}
                     </button>
