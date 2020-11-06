@@ -124,13 +124,15 @@ namespace TP_Cadastro___Desktop
                 // Instanciando objeto Cliente e populando através do construtor
                 Cliente c = new Cliente(txtNome.Text, txtEnd.Text, txtEmail.Text, txtTelefone.Text);
 
-                // Insert
-                string insert = "INSERT INTO cliente (nome, end, email, telefone) VALUES (@nome, @end, @email, @telefone)";
+                //Insert
+                string insert = "INSERT INTO cliente (nome, end, email, telefone, createdAt, updatedAt) VALUES (@nome, @end, @email, @telefone, @DTcreate, @DTupdate)";
                 DB_CONEXAO.comando = new MySqlCommand(insert, DB_CONEXAO.ConnectionKey());
                 DB_CONEXAO.comando.Parameters.AddWithValue("@nome", c.getNome());
                 DB_CONEXAO.comando.Parameters.AddWithValue("@end", c.getEnd());
                 DB_CONEXAO.comando.Parameters.AddWithValue("@email", c.getEmail());
                 DB_CONEXAO.comando.Parameters.AddWithValue("@telefone", c.getTelefone());
+                DB_CONEXAO.comando.Parameters.AddWithValue("@DTcreate", DateTime.Now);
+                DB_CONEXAO.comando.Parameters.AddWithValue("@DTupdate", DateTime.Now); ;
 
                 DB_CONEXAO.OpenConnection();
                 DB_CONEXAO.comando.ExecuteNonQuery();
@@ -193,9 +195,7 @@ namespace TP_Cadastro___Desktop
         {
             try
             {
-               // DB_CONEXAO.conexao = new MySqlConnection("Server=localhost;Database=db_sistema_venda;Uid=root;Pwd=root");
-
-                string update = "UPDATE CLIENTE SET nome = @nome, end =  @end, email = @email, telefone = @telefone, updatedAt = @datetime where id = @id";
+                string update = "UPDATE cliente SET nome = @nome, end =  @end, email = @email, telefone = @telefone, updatedAt = @datetime where id = @id";
                 DB_CONEXAO.comando = new MySqlCommand(update, DB_CONEXAO.ConnectionKey());
                 DB_CONEXAO.comando.Parameters.AddWithValue("@id", txtId.Text);
                 DB_CONEXAO.comando.Parameters.AddWithValue("@nome", txtNome.Text);
@@ -231,7 +231,7 @@ namespace TP_Cadastro___Desktop
             try
             {
 
-                string delete = "DELETE FROM CLIENTE WHERE ID = @id";
+                string delete = "DELETE FROM cliente WHERE ID = @id";
                 DB_CONEXAO.comando = new MySqlCommand(delete, DB_CONEXAO.ConnectionKey());
                 DB_CONEXAO.comando.Parameters.AddWithValue("@id", txtId.Text);
 
