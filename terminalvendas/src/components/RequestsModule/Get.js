@@ -12,7 +12,7 @@ export default function Requests() {
       try {
         const { data } = await api.get(`/compras`);
         setRequests(data);
-        console.log(data);
+
         // const vetor = [];
         // requests.filter((filter) => {
         //   if (filter.Codigo_Pedido === 1)

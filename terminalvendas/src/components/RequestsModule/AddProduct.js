@@ -27,9 +27,8 @@ export default function AddProduct(props) {
     try {
       const { id, num } = props.match.params;
 
-      console.log(id);
       const newData = Number(event.target.textContent);
-      // console.log(newData);
+
       const { data } = await api.get(`produto/${newData}`);
 
       const productSelect = {
@@ -38,7 +37,6 @@ export default function AddProduct(props) {
         id_produto: Number(data.id),
         quantidade: 1,
       };
-      console.log(productSelect);
 
       await api
         .post(`/pedidoproduto`, productSelect)
