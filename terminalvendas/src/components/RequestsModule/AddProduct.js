@@ -25,16 +25,16 @@ export default function AddProduct(props) {
 
   const handleAddProduct = async (event) => {
     try {
-      const id = props.match.params;
-      const num = props.match.params;
-      console.log(id, num);
+      const { id, num } = props.match.params;
+
+      console.log(id);
       const newData = Number(event.target.textContent);
-      console.log(newData);
+      // console.log(newData);
       const { data } = await api.get(`produto/${newData}`);
 
       const productSelect = {
         id_cliente: Number(id),
-        id_pedido: 1,
+        id_pedido: Number(num),
         id_produto: Number(data.id),
         quantidade: 1,
       };

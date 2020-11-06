@@ -15,6 +15,40 @@ export default function Create() {
   const [selectUser, setSelectUser] = useState([]);
   const [valueTotal, setValueTotal] = useState();
   const [userId, setUserId] = useState();
+  const [activation, setActivation] = useState(false);
+
+  const handleActivationOrder = () => {
+    try {
+      const apiAsync = async () => {
+        const newOrder = {
+          obs: '',
+        };
+        await api
+          .post(`/novopedido`, newOrder)
+          .catch((error) => console.log(error.response.request._response));
+      };
+      setActivation(true);
+      apiAsync();
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    try {
+      const apiAsync = async () => {
+        const { data } = await api.get(`relatorio/${numberOrder}`);
+
+        if (data.length > 0) {
+          const totalOrder = data
+            .map((item) => item.valor_total)
+            .reduce((total, produto) => total + produto);
+          setValueTotal(totalOrder);
+        }
+      };
+      apiAsync();
+    } catch (error) {}
+  }, []);
 
   useEffect(() => {
     try {
@@ -22,8 +56,7 @@ export default function Create() {
         const { data } = await api.get(`/todospedidos`);
         setAllRequests(data);
         const mapPedido = data.map((pedido) => pedido.id_pedido);
-        let number = Math.max.apply(null, mapPedido) + 1;
-
+        let number = Math.max.apply(null, mapPedido);
         if (number === -Infinity) number = 1;
         setNumberOrder(number);
       };
@@ -31,7 +64,7 @@ export default function Create() {
     } catch (error) {
       console.log(error);
     }
-  }, [numberOrder]);
+  }, [numberOrder, activation]);
 
   useEffect(() => {
     try {
@@ -46,21 +79,12 @@ export default function Create() {
     }
   }, [userId]);
 
-  useEffect(() => {
-    try {
-    } catch (error) {
-      console.log(error);
-    }
-  }, []);
-
   const handleSubmit = async (data) => {
     try {
-      console.log(data);
       const newData = {
         obs: data.target[0].value,
       };
       await api.post(`/novopedido`, { ...newData });
-
       setRedirecCheck(true);
     } catch (error) {
       console.log(error);
@@ -68,7 +92,6 @@ export default function Create() {
   };
   const handleSelectOption = (select) => {
     const selectedUser = select.target.value;
-    // console.log(Number(selectedUser.split('-')[0]));
     setUserId(Number(selectedUser.split('-')[0]));
   };
 
@@ -96,6 +119,13 @@ export default function Create() {
             </div>
           </div>
 
+          <button
+            type="submit"
+            className="btn btn-info"
+            onClick={handleActivationOrder}
+          >
+            Novo pedido
+          </button>
           <div
             className="row"
             style={{
@@ -139,17 +169,17 @@ export default function Create() {
           </div>
 
           <div className="row">
-            <div className="col-10">
-              <OrderUser
-                qtdrOrder={numberOrder}
-                handleClick={handleValueTotal}
-                idUserNumber={userId}
-              ></OrderUser>
-            </div>
-          </div>
+            <div className="col-6">
+              <Link to={`/adicionarproduto/${userId}/${numberOrder}`}>
+                <button
+                  type="button"
+                  className="btn btn-primary"
+                  style={{ marginRight: '10px' }}
+                >
+                  Adicionar produto
+                </button>
+              </Link>
 
-          <div className="row">
-            <div className="col-4">
               <button
                 type="submit"
                 className="btn btn-warning"
@@ -176,6 +206,15 @@ export default function Create() {
                   Voltar
                 </button>
               </Link>
+            </div>
+          </div>
+          <div className="row">
+            <div className="col-10">
+              <OrderUser
+                qtdrOrder={numberOrder}
+                handleClick={handleValueTotal}
+                idUserNumber={userId}
+              ></OrderUser>
             </div>
           </div>
           {redirectCheck === true ? <Redirect to="/" /> : redirectCheck}

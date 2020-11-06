@@ -10,10 +10,6 @@ export default function OrderUser({ qtdrOrder, handleClick, idUserNumber }) {
   const [valueTotal, setValueTotal] = useState();
   const [valueInput, setValueInput] = useState();
 
-  const handleValueTotal = () => {
-    handleClick(valueTotal);
-  };
-
   useEffect(() => {
     try {
       const apiAsync = async () => {
@@ -26,12 +22,10 @@ export default function OrderUser({ qtdrOrder, handleClick, idUserNumber }) {
             .reduce((total, produto) => total + produto);
           setValueTotal(totalOrder);
         }
-
-        handleValueTotal();
       };
       apiAsync();
     } catch (error) {}
-  }, [valueTotal, qtdrOrder]);
+  }, []);
 
   const productItemSelect = (props) => {
     console.log(props);
