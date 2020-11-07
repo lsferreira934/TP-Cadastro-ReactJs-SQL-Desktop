@@ -18,6 +18,7 @@ export default function Create() {
   // const [activation, setActivation] = useState(false);
   const [getOrderId, setGetOrderId] = useState([]);
   const [userComplete, setUserComplete] = useState();
+  const [loadPage, setLoadePage] = useState(false);
 
   useEffect(() => {
     try {
@@ -78,7 +79,7 @@ export default function Create() {
       };
       apiAsync();
     } catch (error) {}
-  }, [numberOrder]);
+  }, [numberOrder, loadPage]);
 
   // Selecionar o Cliente
   useEffect(() => {
@@ -115,15 +116,25 @@ export default function Create() {
 
   // Apagar todas as ordens ligada ao cliente
   const handleCancelOrder = async () => {
-    const { data } = await api.get(`/relatorio/${numberOrder}`);
-    if (data.length !== 0) {
-      await api.delete(`apagarpedidovarios/${numberOrder}`);
-      console.log('deletado');
+    try {
+      const { data } = await api.get(`/relatorio/${numberOrder}`);
+      if (data.length !== 0) {
+        await api.delete(`apagarpedidovarios/${numberOrder}`);
+        console.log('deletado');
+      }
+    } catch (error) {
+      console.log(error);
     }
   };
 
   const handleDeleteProduct = async (event) => {
-    console.log(event.target.value);
+    try {
+      await api.delete(`/apagarpedido/${Number(event.target.value)}`);
+
+      loadPage === true ? setLoadePage(false) : setLoadePage(true);
+    } catch (error) {
+      console.log(error);
+    }
   };
   return (
     <>
@@ -244,6 +255,7 @@ export default function Create() {
                     {getOrderId.map((order) => {
                       const {
                         id,
+                        id_pedido,
                         id_produto,
                         quantidade,
                         valor_unidade,
@@ -288,7 +300,7 @@ export default function Create() {
                               onClick={handleDeleteProduct}
                               type="button"
                               className="btn btn-danger"
-                              value={id_produto}
+                              value={id}
                               style={{
                                 color: 'white',
                               }}
