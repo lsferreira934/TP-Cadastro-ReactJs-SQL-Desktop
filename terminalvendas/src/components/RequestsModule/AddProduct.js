@@ -8,7 +8,10 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 export default function AddProduct(props) {
   const [products, setProducts] = useState([]);
   const [redirectCheck, setRedirecCheck] = useState(false);
-  const [valueInput, setValueInput] = useState();
+  const [valueInput, setValueInput] = useState({
+    id: 0,
+    qtd: 0 + 1,
+  });
 
   useEffect(() => {
     const apiAsync = async () => {
@@ -49,6 +52,10 @@ export default function AddProduct(props) {
     }
   };
 
+  const handleQuant = (value, id) => {
+    setValueInput({ id: id, qtd: value });
+    console.log(valueInput);
+  };
   return (
     <div>
       <div className="container">
@@ -63,7 +70,7 @@ export default function AddProduct(props) {
               <th>Qtd-Estoque</th>
               <th>Vl-custo</th>
               <th>Vl-Venda</th>
-              <th>Selecionar</th>
+              <th>Adicionar</th>
             </tr>
           </thead>
           <tbody>
@@ -75,6 +82,7 @@ export default function AddProduct(props) {
                 valor_custo,
                 valor_venda,
               } = product;
+
               return qtd_estoque <= 0 ? (
                 <tr key={id}>
                   <td>{id}</td>
@@ -88,7 +96,7 @@ export default function AddProduct(props) {
                       disabled
                       onClick={handleAddProduct}
                       type="button"
-                      class="btn btn-success"
+                      class="btn btn-danger"
                       style={{
                         color: 'transparent',
                       }}
@@ -109,7 +117,24 @@ export default function AddProduct(props) {
                   <td>{qtd_estoque}</td>
                   <td>{valor_custo}</td>
                   <td>{valor_venda}</td>
-
+                  <td>
+                    <input
+                      value={valueInput.id === id ? valueInput.qtd : 1}
+                      type="number"
+                      min="0"
+                      max={qtd_estoque}
+                      step="1"
+                      style={{
+                        color: 'black',
+                        width: '60px',
+                        fontSize: '10pt',
+                      }}
+                      onChangeCapture={(e) => {
+                        let value = Number(e.target.value);
+                        handleQuant(value, id);
+                      }}
+                    />
+                  </td>
                   <td>
                     <button
                       onClick={handleAddProduct}

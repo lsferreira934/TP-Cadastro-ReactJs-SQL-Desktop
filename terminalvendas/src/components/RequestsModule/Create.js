@@ -27,7 +27,7 @@ export default function Create() {
 
         if (data.length === 0) {
           const newData = {
-            obs: 'primeiro pedido',
+            obs: '333-999',
           };
           await api.post(`/novopedido`, { ...newData });
         }
@@ -47,6 +47,7 @@ export default function Create() {
 
         const mapPedido = data.map((pedido) => pedido.id_pedido);
         let number = Math.max.apply(null, mapPedido);
+
         if (number === -Infinity) number = 1;
         setNumberOrder(number);
       };
@@ -95,10 +96,21 @@ export default function Create() {
   }, [userId]);
 
   // Criar um novo pedido
-  const handleSubmit = async (data) => {
+  const handleSubmit = async (event) => {
     try {
+      // const { data } = await api.get(`/todospedidos`);
+      // console.log(data);
+      // if (data[0].id === numberOrder) {
+      //   const newData = {
+      //     id_pedido: numberOrder,
+      //     obs: event.obs,
+      //   };
+      //   await api.put(`alterarprimeiropedido/${1}`, newData);
+      //   setRedirecCheck(true);
+      // } else {
+      // console.log('criou outro');}
       const newData = {
-        obs: data.obs,
+        obs: event.obs,
       };
       await api.post(`/novopedido`, { ...newData });
 
