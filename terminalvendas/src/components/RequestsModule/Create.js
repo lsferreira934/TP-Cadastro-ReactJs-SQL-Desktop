@@ -9,13 +9,12 @@ import css from '../css/get.module.css';
 import { FaTrash } from 'react-icons/fa';
 
 export default function Create() {
-  // const [allRequests, setAllRequests] = useState([]);
   const [numberOrder, setNumberOrder] = useState();
   const [redirectCheck, setRedirecCheck] = useState(false);
   const [selectUser, setSelectUser] = useState([]);
   const [valueTotal, setValueTotal] = useState();
   const [userId, setUserId] = useState();
-  // const [activation, setActivation] = useState(false);
+
   const [getOrderId, setGetOrderId] = useState([]);
   const [userComplete, setUserComplete] = useState();
   const [loadPage, setLoadePage] = useState(false);
@@ -79,7 +78,9 @@ export default function Create() {
         }
       };
       apiAsync();
-    } catch (error) {}
+    } catch (error) {
+      console.log(error);
+    }
   }, [numberOrder, loadPage]);
 
   // Selecionar o Cliente
@@ -98,17 +99,6 @@ export default function Create() {
   // Criar um novo pedido
   const handleSubmit = async (event) => {
     try {
-      // const { data } = await api.get(`/todospedidos`);
-      // console.log(data);
-      // if (data[0].id === numberOrder) {
-      //   const newData = {
-      //     id_pedido: numberOrder,
-      //     obs: event.obs,
-      //   };
-      //   await api.put(`alterarprimeiropedido/${1}`, newData);
-      //   setRedirecCheck(true);
-      // } else {
-      // console.log('criou outro');}
       const newData = {
         obs: event.obs,
       };
@@ -132,16 +122,25 @@ export default function Create() {
       const { data } = await api.get(`/relatorio/${numberOrder}`);
       if (data.length !== 0) {
         await api.delete(`apagarpedidovarios/${numberOrder}`);
-        console.log('deletado');
       }
     } catch (error) {
       console.log(error);
     }
   };
 
-  const handleDeleteProduct = async (event) => {
+  //Deletar produto na lista e atualizar o valor e o estoque
+  const handleDeleteProduct = async (e, idproduto, quantidade) => {
     try {
-      await api.delete(`/apagarpedido/${Number(event.target.value)}`);
+      const id = Number(e.target.value);
+
+      const { data } = await api.get(`produto/${idproduto}`);
+
+      const newData = {
+        qtd_estoque: data.qtd_estoque + quantidade,
+      };
+
+      await api.put(`produto/${idproduto}`, newData);
+      await api.delete(`/apagarpedido/${id}`);
 
       loadPage === true ? setLoadePage(false) : setLoadePage(true);
     } catch (error) {
@@ -258,8 +257,6 @@ export default function Create() {
                       <th>Quantidade</th>
                       <th>valor Unidade</th>
                       <th>Valor Total</th>
-
-                      <th>Alterar</th>
                       <th>Deletar</th>
                     </tr>
                   </thead>
@@ -276,40 +273,14 @@ export default function Create() {
                       return (
                         <tr key={id}>
                           <td>{id_produto}</td>
-                          <td>
-                            <input
-                              type="number"
-                              min="1"
-                              max={quantidade}
-                              step="1"
-                              style={{
-                                color: 'black',
-                                width: '60px',
-                                fontSize: '10pt',
-                              }}
-                            />
-                          </td>
+                          <td>{quantidade}</td>
                           <td>{valor_unidade}</td>
                           <td>{valor_total}</td>
-
-                          <td>
-                            <Link to={`/alterarCliente/${id}`}>
-                              <button
-                                type="button"
-                                className="btn btn-warning"
-                                value={id_produto}
-                                style={{
-                                  color: 'black',
-                                }}
-                              >
-                                Alterar
-                              </button>
-                            </Link>
-                          </td>
-
                           <td>
                             <button
-                              onClick={handleDeleteProduct}
+                              onClick={(e) => {
+                                handleDeleteProduct(e, id_produto, quantidade);
+                              }}
                               type="button"
                               className="btn btn-danger"
                               value={id}

@@ -10,7 +10,7 @@ export default function AddProduct(props) {
   const [redirectCheck, setRedirecCheck] = useState(false);
   const [valueInput, setValueInput] = useState({
     id: 0,
-    qtd: 0 + 1,
+    qtd: 0,
   });
 
   useEffect(() => {
@@ -23,8 +23,9 @@ export default function AddProduct(props) {
         console.log(error);
       }
     };
+    console.log(valueInput);
     apiAsync();
-  }, []);
+  }, [valueInput]);
 
   const handleAddProduct = async (event) => {
     try {
@@ -38,7 +39,7 @@ export default function AddProduct(props) {
         id_cliente: Number(id),
         id_pedido: Number(num),
         id_produto: Number(data.id),
-        quantidade: 1,
+        quantidade: Number((data.id = valueInput.id ? valueInput.qtd : 0)),
       };
 
       console.log(productSelect);
@@ -52,10 +53,6 @@ export default function AddProduct(props) {
     }
   };
 
-  const handleQuant = (value, id) => {
-    setValueInput({ id: id, qtd: value });
-    console.log(valueInput);
-  };
   return (
     <div>
       <div className="container">
@@ -119,19 +116,19 @@ export default function AddProduct(props) {
                   <td>{valor_venda}</td>
                   <td>
                     <input
-                      value={valueInput.id === id ? valueInput.qtd : 1}
+                      value={valueInput.id === id ? valueInput.qtd : 0}
                       type="number"
                       min="0"
                       max={qtd_estoque}
-                      step="1"
                       style={{
                         color: 'black',
                         width: '60px',
                         fontSize: '10pt',
                       }}
                       onChangeCapture={(e) => {
-                        let value = Number(e.target.value);
-                        handleQuant(value, id);
+                        setValueInput({ id: id, qtd: e.target.value });
+
+                        // handleQuant(value, id);
                       }}
                     />
                   </td>
