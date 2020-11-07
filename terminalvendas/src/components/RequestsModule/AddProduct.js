@@ -30,7 +30,7 @@ export default function AddProduct(props) {
       const newData = Number(event.target.textContent);
 
       const { data } = await api.get(`produto/${newData}`);
-
+      console.log(data);
       const productSelect = {
         id_cliente: Number(id),
         id_pedido: Number(num),
@@ -38,6 +38,7 @@ export default function AddProduct(props) {
         quantidade: 1,
       };
 
+      console.log(productSelect);
       await api
         .post(`/pedidoproduto`, productSelect)
         .catch((error) => console.log(error.response.request._response));
