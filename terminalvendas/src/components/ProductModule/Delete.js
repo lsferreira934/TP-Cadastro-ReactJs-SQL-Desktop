@@ -48,7 +48,7 @@ export default function Delete(props) {
       <div id={css.form}>
         <Form initialData={initialData} onSubmit={handleSubmit}>
           <div className="form">
-            <div className="form-group col-sm-4 col-md-4 col-lg-4 col-lg-4">
+            <div className="form">
               <label for="inputName">Nome</label>
 
               <Input

@@ -31,11 +31,11 @@ export default function Create() {
     }
   };
   return (
-    <div className="container center" align="center">
+    <div className="container" align="center">
       <div id={css.form}>
         <Form onSubmit={handleSubmit}>
           <div className="form">
-            <div className="form-group col-md-4">
+            <div className="/">
               <label for="inputName">Produto</label>
 
               <Input
@@ -47,7 +47,7 @@ export default function Create() {
               />
             </div>
 
-            <div className="form-group col-md-4">
+            <div className="form">
               <label for="inputQuantidade">Quantida</label>
 
               <Input
@@ -62,7 +62,7 @@ export default function Create() {
               />
             </div>
 
-            <div className="form-group col-md-4">
+            <div className="form">
               <label for="inputCompra">Valor de custo</label>
               <Input
                 name="valor_custo"
@@ -75,7 +75,7 @@ export default function Create() {
                 placeholder="100.00"
               />
             </div>
-            <div className="form-group col-md-4">
+            <div className="form">
               <label for="inputVenda">Valor de Venda</label>
               <Input
                 type="number"

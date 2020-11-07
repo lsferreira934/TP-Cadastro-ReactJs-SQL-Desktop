@@ -48,7 +48,7 @@ export default function Update(props) {
       <div id={css.form}>
         <Form initialData={initialData} onSubmit={handleSubmit}>
           <div className="form">
-            <div className="form-group col-md-4">
+            <div className="form">
               <label for="inputName">Nome</label>
 
               <Input
@@ -59,7 +59,7 @@ export default function Update(props) {
               />
             </div>
 
-            <div className="form-group col-md-4">
+            <div className="form">
               <label for="inputAddress">Endereço</label>
 
               <Input
@@ -70,7 +70,7 @@ export default function Update(props) {
               />
             </div>
 
-            <div className="form-group col-md-4">
+            <div className="form">
               <label for="inputPhone">Telefone</label>
               <Input
                 name="telefone"
@@ -79,7 +79,7 @@ export default function Update(props) {
                 id="inputPhone"
               />
             </div>
-            <div className="form-group col-md-4">
+            <div className="form">
               <label for="inputEmail">Email</label>
               <Input
                 type="email"

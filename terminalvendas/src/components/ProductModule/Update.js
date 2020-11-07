@@ -49,7 +49,7 @@ export default function Update(props) {
       <div id={css.form}>
         <Form initialData={initialData} onSubmit={handleSubmit}>
           <div className="form">
-            <div className="form-group col-md-4">
+            <div className="form">
               <label for="inputName">Produto</label>
 
               <Input
@@ -61,8 +61,8 @@ export default function Update(props) {
               />
             </div>
 
-            <div className="form-group col-md-4">
-              <label for="inputQuantidade">Quantida</label>
+            <div className="form">
+              <label for="inputQuantidade">Quantidade</label>
 
               <Input
                 name="qtd_estoque"
@@ -76,7 +76,7 @@ export default function Update(props) {
               />
             </div>
 
-            <div className="form-group col-md-4">
+            <div className="form">
               <label for="inputCompra">Valor de custo</label>
               <Input
                 name="valor_custo"
@@ -89,7 +89,7 @@ export default function Update(props) {
                 placeholder="100.00"
               />
             </div>
-            <div className="form-group col-md-4">
+            <div className="form">
               <label for="inputVenda">Valor de Venda</label>
               <Input
                 type="number"
