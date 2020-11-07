@@ -24,11 +24,13 @@ export default function Get() {
       <div className="container">
         <div>
           <h2>Cadastrar Produto</h2>
+          <div style={{ marginBottom: '20px' }}>
           <Link to="/cadastrarProduto">
             <button type="button" className="btn btn-primary">
               Adicionar
             </button>
           </Link>
+          </div>
         </div>
         <table className="table table-hover table-dark">
           <thead>
