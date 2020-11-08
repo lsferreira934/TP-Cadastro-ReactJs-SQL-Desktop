@@ -10,21 +10,38 @@ export default function Requests() {
   useEffect(() => {
     const apiAsync = async () => {
       try {
-        const { data } = await api.get(`/compras`);
-        setRequests(data);
+        const { data } = await api.get(`/agrupamento`);
+        const dataMap = data.map(
+          ({
+            Codigo_Pedido,
+            Cliente,
+            produtos,
+            valor_unitario,
+            quantidade_respectiva,
+            faturamento,
+            Data_Pedido,
+            Observação,
+          }) => {
+            return {
+              Codigo_Pedido,
+              Cliente,
+              prvlqt: valor_unitario.split(',').map((vl, i) => {
+                return {
+                  qtd: quantidade_respectiva.split(',')[i],
+                  vl: vl,
+                  produto: produtos.split(',')[i],
+                };
+              }),
+              faturamento,
+              Data_Pedido,
+              Observação,
+            };
+          }
+        );
 
-        // const vetor = [];
-        // requests.filter((filter) => {
-        //   if (filter.Codigo_Pedido === 1)
-        //     vetor.push({
-        //       Produto: filter.Produto,
-        //       Quantidade: filter.Quantidade,
-        //       Valor_Unitário: filter.Valor_Unitário,
-        //       Valor_Total: filter.Valor_Total,
-        //     });
-        // });
+        setRequests(dataMap);
 
-        // console.log(vetor);
+        console.log(dataMap);
       } catch (error) {
         console.log(error);
       }
@@ -43,29 +60,83 @@ export default function Requests() {
         <div className="row">
           {requests.map((order) => {
             const {
-              Cliente,
               Codigo_Pedido,
+              Cliente,
+              prvlqt,
+              faturamento,
               Data_Pedido,
               Observação,
-              Produto,
-              Quantidade,
-              Valor_Total,
-              Valor_Unitário,
             } = order;
 
             return (
-              <div className="card" style={{ width: '18rem' }}>
-                <div className="card-body">
-                  <div>Pedido Nº:{Codigo_Pedido}</div>
-                  <h5 className="card-title">Nome: {Cliente}</h5>
-                  <div>
-                    <p className="card-text">
-                      {Quantidade} - {Produto}
+              <div
+                className="col-12 col-sm-4 col-md-3 col-lg-2 col-xl-2"
+                style={{
+                  marginBottom: '10px',
+                  marginTop: '20px',
+                }}
+              >
+                <div
+                  key={Codigo_Pedido}
+                  className="card"
+                  style={{ width: '18rem', borderRadius: '10px' }}
+                >
+                  <div class="card-header">
+                    <div>
+                      <h4>
+                        <strong>Pedido Nº {Codigo_Pedido}</strong>
+                      </h4>
+                    </div>
+                    <div>
+                      <h5>
+                        <div>Data {Data_Pedido}</div>
+                      </h5>
+                    </div>
+                    <div>
+                      <h4 className="card-tittle">Cleinte: {Cliente}</h4>
+                    </div>
+                  </div>
+                  <div className="card-body" style={{ padding: '5px' }}>
+                    <p
+                      className="card "
+                      style={{
+                        backgroundColor: 'antiquewhite',
+                        borderRadius: '8px',
+                        padding: '10px',
+                      }}
+                    >
+                      {prvlqt.map((item) => {
+                        const { qtd, produto, vl } = item;
+                        return (
+                          <p>
+                            {qtd} x {produto} - R$ {vl}
+                          </p>
+                        );
+                      })}
                     </p>
                   </div>
-
-                  <button className="btn btn-warning">Alterar</button>
-                  <button className="btn btn-danger">Deletar</button>
+                  <div
+                    class="card "
+                    style={{
+                      backgroundColor: 'aliceblue',
+                      borderRadius: '8px',
+                      padding: '10px',
+                      marginTop: '4px',
+                      margin: '4px',
+                    }}
+                  >
+                    <h4>Valor total R$: {faturamento}</h4>
+                    <button className="btn btn-warning">Alterar</button>
+                    <button
+                      className="btn btn-danger"
+                      style={{
+                        marginTop: '4px',
+                        marginBottom: '4px',
+                      }}
+                    >
+                      Deletar
+                    </button>
+                  </div>
                 </div>
               </div>
             );
