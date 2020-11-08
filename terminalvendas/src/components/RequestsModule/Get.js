@@ -79,7 +79,11 @@ export default function Requests() {
                 <div
                   key={Codigo_Pedido}
                   className="card"
-                  style={{ width: '18rem', borderRadius: '10px' }}
+                  style={{
+                    width: '18rem',
+                    borderRadius: '10px',
+                    boxShadow: '10px 10px 10px',
+                  }}
                 >
                   <div class="card-header">
                     <div>
