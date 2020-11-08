@@ -85,8 +85,18 @@ export default function AddProduct(props) {
                   <td>{id}</td>
                   <td>{nome}</td>
                   <td>{qtd_estoque}</td>
-                  <td>{valor_custo}</td>
-                  <td>{valor_venda}</td>
+                  <td>
+                    {Number(valor_custo).toLocaleString('pt-br', {
+                      style: 'currency',
+                      currency: 'BRL',
+                    })}
+                  </td>
+                  <td>
+                    {Number(valor_venda).toLocaleString('pt-br', {
+                      style: 'currency',
+                      currency: 'BRL',
+                    })}
+                  </td>
 
                   <td>
                     <button
@@ -112,8 +122,18 @@ export default function AddProduct(props) {
                   <td>{id}</td>
                   <td>{nome}</td>
                   <td>{qtd_estoque}</td>
-                  <td>{valor_custo}</td>
-                  <td>{valor_venda}</td>
+                  <td>
+                    {valor_custo.toLocaleString('pt-br', {
+                      style: 'currency',
+                      currency: 'BRL',
+                    })}
+                  </td>
+                  <td>
+                    {valor_venda.toLocaleString('pt-br', {
+                      style: 'currency',
+                      currency: 'BRL',
+                    })}
+                  </td>
                   <td>
                     <input
                       value={valueInput.id === id ? valueInput.qtd : 0}

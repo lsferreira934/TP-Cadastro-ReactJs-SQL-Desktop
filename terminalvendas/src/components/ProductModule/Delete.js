@@ -88,15 +88,30 @@ export default function Delete(props) {
               />
             </div>
 
-            <button type="submit" className="btn btn-danger">
-              Apagar
-            </button>
-
             <Link to="/produto">
-              <button type="submit" className="btn btn-warning">
+              <button
+                type="button"
+                className="btn btn-warning"
+                style={{
+                  marginRight: '10px',
+                  color: 'white',
+                  fontWeight: 'bold',
+                }}
+              >
                 Voltar
               </button>
             </Link>
+
+            <button
+              type="submit"
+              className="btn btn-danger"
+              style={{
+                color: 'white',
+                fontWeight: 'bold',
+              }}
+            >
+              Apagar
+            </button>
           </div>
 
           {redirectCheck === true ? <Redirect to="/produto" /> : redirectCheck}

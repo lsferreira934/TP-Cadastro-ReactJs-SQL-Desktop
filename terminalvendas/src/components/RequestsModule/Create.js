@@ -152,7 +152,9 @@ export default function Create() {
       <div className="container">
         <div className="row  ">
           <div className="col-2  col-sm-5 col-md-6 col-lg-7">
-            <label for="select">PEDIDO Nº </label>
+            <label for="select" style={{ marginRight: '5px' }}>
+              PEDIDO Nº{' '}
+            </label>
             <input
               type="text"
               value={numberOrder}
@@ -161,11 +163,20 @@ export default function Create() {
             />
           </div>
           <div className=" col col-sm-auto">
-            <label for="select">VALOR DA COMPRA</label>
+            <label for="select" style={{ marginRight: '5px' }}>
+              VALOR DA COMPRA{' '}
+            </label>
             <input
               type="text"
-              style={{ width: '110px' }}
-              value={valueTotal}
+              style={{ width: '110px', fontSize: '10pt' }}
+              value={
+                valueTotal !== isNaN
+                  ? Number(valueTotal).toLocaleString('pt-br', {
+                      style: 'currency',
+                      currency: 'BRL',
+                    })
+                  : 'R$ 0,00'
+              }
               disabled
             />
           </div>
@@ -214,7 +225,11 @@ export default function Create() {
                   <button
                     type="button"
                     className="btn btn-primary"
-                    style={{ marginRight: '10px' }}
+                    style={{
+                      marginRight: '10px',
+                      color: 'white',
+                      fontWeight: 'bold',
+                    }}
                   >
                     Adicionar produto
                   </button>
@@ -223,7 +238,11 @@ export default function Create() {
                 <button
                   type="submit"
                   className="btn btn-warning"
-                  style={{ marginRight: '10px' }}
+                  style={{
+                    marginRight: '10px',
+                    color: 'white',
+                    fontWeight: 'bold',
+                  }}
                 >
                   Finalizar pedido
                 </button>
@@ -231,7 +250,11 @@ export default function Create() {
                 <Link to="/novocliente">
                   <button
                     className="btn btn-success"
-                    style={{ marginRight: '10px' }}
+                    style={{
+                      marginRight: '10px',
+                      color: 'white',
+                      fontWeight: 'bold',
+                    }}
                   >
                     Cadastrar cliente
                   </button>
@@ -242,9 +265,13 @@ export default function Create() {
                     onClick={handleCancelOrder}
                     type="button"
                     className="btn btn-danger"
-                    style={{ marginRight: '10px' }}
+                    style={{
+                      marginRight: '10px',
+                      color: 'white',
+                      fontWeight: 'bold',
+                    }}
                   >
-                    Cancelar
+                    Cancelar Pedido
                   </button>
                 </Link>
               </div>
@@ -278,8 +305,18 @@ export default function Create() {
                         <tr key={id}>
                           <td>{id_produto}</td>
                           <td>{quantidade}</td>
-                          <td>{valor_unidade}</td>
-                          <td>{valor_total}</td>
+                          <td>
+                            {valor_unidade.toLocaleString('pt-br', {
+                              style: 'currency',
+                              currency: 'BRL',
+                            })}
+                          </td>
+                          <td>
+                            {valor_total.toLocaleString('pt-br', {
+                              style: 'currency',
+                              currency: 'BRL',
+                            })}
+                          </td>
                           <td>
                             <button
                               onClick={(e) => {
@@ -292,7 +329,7 @@ export default function Create() {
                                 color: 'white',
                               }}
                             >
-                              Deletar
+                              Apagar
                             </button>
                           </td>
                         </tr>
@@ -367,7 +404,11 @@ export default function Create() {
                 <button
                   type="submit"
                   className="btn btn-warning"
-                  style={{ marginRight: '10px' }}
+                  style={{
+                    marginRight: '10px',
+                    color: 'white',
+                    fontWeight: 'bold',
+                  }}
                 >
                   Finalizar pedido
                 </button>
@@ -375,7 +416,11 @@ export default function Create() {
                 <Link to="/novocliente">
                   <button
                     className="btn btn-success"
-                    style={{ marginRight: '10px' }}
+                    style={{
+                      marginRight: '10px',
+                      color: 'white',
+                      fontWeight: 'bold',
+                    }}
                   >
                     Cadastrar cliente
                   </button>
@@ -385,7 +430,11 @@ export default function Create() {
                   <button
                     type="button"
                     className="btn btn-danger"
-                    style={{ marginRight: '10px' }}
+                    style={{
+                      marginRight: '10px',
+                      color: 'white',
+                      fontWeight: 'bold',
+                    }}
                   >
                     Voltar
                   </button>

@@ -31,11 +31,11 @@ export default function Create() {
     }
   };
   return (
-    <div className="container center" align="center">
+    <div className="container" align="center">
       <div id={css.form}>
         <Form onSubmit={handleSubmit}>
           <div className="form">
-            <div className="form-group col-md-4">
+            <div className="form">
               <label for="inputName">Nome</label>
 
               <Input
@@ -47,7 +47,7 @@ export default function Create() {
               />
             </div>
 
-            <div className="form-group col-md-4">
+            <div className="form">
               <label for="inputAddress">Endereço</label>
 
               <Input
@@ -59,7 +59,7 @@ export default function Create() {
               />
             </div>
 
-            <div className="form-group col-md-4">
+            <div className="form">
               <label for="inputPhone">Telefone</label>
               <Input
                 name="telefone"
@@ -69,7 +69,7 @@ export default function Create() {
                 placeholder="Ex: 139999-8888"
               />
             </div>
-            <div className="form-group col-md-4">
+            <div className="form">
               <label for="inputEmail">Email</label>
               <Input
                 type="email"
@@ -81,7 +81,15 @@ export default function Create() {
             </div>
           </div>
           <Link to="/novopedido">
-            <button type="submit" className="btn btn-danger">
+            <button
+              type="button"
+              className="btn btn-danger"
+              style={{
+                marginRight: '10px',
+                color: 'white',
+                fontWeight: 'bold',
+              }}
+            >
               Voltar
             </button>
           </Link>

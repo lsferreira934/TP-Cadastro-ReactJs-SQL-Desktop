@@ -81,7 +81,15 @@ export default function Create() {
             </div>
           </div>
           <Link to="/cliente">
-            <button type="submit" className="btn btn-danger">
+            <button
+              type="button"
+              className="btn btn-danger"
+              style={{
+                marginRight: '10px',
+                color: 'white',
+                fontWeight: 'bold',
+              }}
+            >
               Voltar
             </button>
           </Link>

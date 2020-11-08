@@ -28,7 +28,10 @@ export default function Requests() {
               prvlqt: valor_unitario.split(',').map((vl, i) => {
                 return {
                   qtd: quantidade_respectiva.split(',')[i],
-                  vl: vl,
+                  vl: Number(vl).toLocaleString('pt-br', {
+                    style: 'currency',
+                    currency: 'BRL',
+                  }),
                   produto: produtos.split(',')[i],
                 };
               }),
@@ -70,7 +73,7 @@ export default function Requests() {
 
             return (
               <div
-                className="col-12 col-sm-4 col-md-3 col-lg-2 col-xl-2"
+                className="col-7 col-sm-5 col-md-4 col-lg-3 col-xl-2"
                 style={{
                   marginBottom: '10px',
                   marginTop: '20px',
@@ -112,8 +115,15 @@ export default function Requests() {
                       {prvlqt.map((item) => {
                         const { qtd, produto, vl } = item;
                         return (
-                          <p>
-                            {qtd} x {produto} - R$ {vl}
+                          <p
+                            style={{
+                              fontWeight: 'bold',
+                              color: 'black',
+                              fontSize: '9pt',
+                              marginBottom: '4px',
+                            }}
+                          >
+                            {qtd} x {produto} - {vl}
                           </p>
                         );
                       })}
@@ -130,15 +140,26 @@ export default function Requests() {
                     }}
                   >
                     <h4>Valor total R$: {faturamento}</h4>
-                    <button className="btn btn-warning">Alterar</button>
+
+                    <button
+                      className="btn btn-warning"
+                      style={{
+                        color: 'white',
+                        fontWeight: 'bold',
+                      }}
+                    >
+                      Voltar
+                    </button>
+
                     <button
                       className="btn btn-danger"
                       style={{
                         marginTop: '4px',
                         marginBottom: '4px',
+                        fontWeight: 'bold',
                       }}
                     >
-                      Deletar
+                      Apagar
                     </button>
                   </div>
                 </div>

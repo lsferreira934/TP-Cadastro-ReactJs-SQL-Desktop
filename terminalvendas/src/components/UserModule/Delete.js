@@ -3,7 +3,7 @@ import { Form } from '@unform/web';
 import Input from '../Form/Input';
 import api from '../services/api';
 import css from '../css/update.module.css';
-import { Redirect } from 'react-router-dom';
+import { Redirect, Link } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 export default function Delete(props) {
@@ -92,8 +92,27 @@ export default function Delete(props) {
                 disabled
               />
             </div>
-
-            <button type="submit" className="btn btn-danger">
+            <Link to="/cliente">
+              <button
+                type="button"
+                className="btn btn-warning"
+                style={{
+                  marginRight: '10px',
+                  color: 'white',
+                  fontWeight: 'bold',
+                }}
+              >
+                Voltar
+              </button>
+            </Link>
+            <button
+              type="submit"
+              className="btn btn-danger"
+              style={{
+                color: 'white',
+                fontWeight: 'bold',
+              }}
+            >
               Apagar
             </button>
           </div>

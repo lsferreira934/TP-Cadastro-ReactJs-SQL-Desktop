@@ -3,7 +3,7 @@ import { Form } from '@unform/web';
 import Input from '../Form/Input';
 import api from '../services/api';
 import css from '../css/update.module.css';
-import { Redirect } from 'react-router-dom';
+import { Redirect, Link } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 export default function Create() {
@@ -89,7 +89,19 @@ export default function Create() {
               />
             </div>
           </div>
-
+          <Link to="/produto">
+            <button
+              type="button"
+              className="btn btn-danger"
+              style={{
+                marginRight: '10px',
+                color: 'white',
+                fontWeight: 'bold',
+              }}
+            >
+              Voltar
+            </button>
+          </Link>
           <button type="submit" className="btn btn-success">
             Cadastrar
           </button>
