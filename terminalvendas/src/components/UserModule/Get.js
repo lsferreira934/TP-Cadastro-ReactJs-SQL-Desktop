@@ -21,76 +21,75 @@ export default function Get() {
   return (
     <div>
       <div className="container">
-        <div>
+        <div style={{ boxShadow: '10px 10px 10px', marginTop: '15px' }}>
           <h2>Cadastrar Cliente</h2>
-
-          <div style={{ marginBottom: '20px' }}>
-            <Link to="/cadastrarCliente">
-              <button type="button" className="btn btn-primary">
-                Adicionar
-              </button>
-            </Link>
-          </div>
         </div>
-        <table className="table table-hover table-dark">
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>Nome</th>
-              <th>Endereço</th>
-              <th>Telefone</th>
-              <th>Email</th>
-              <th>Atualizar</th>
-              <th>Deletar</th>
-            </tr>
-          </thead>
-          <tbody>
-            {users.map((user) => {
-              const { id, nome, end, telefone, email } = user;
+        <div style={{ marginBottom: '20px', marginTop: '20px' }}>
+          <Link to="/cadastrarCliente">
+            <button type="button" className="btn btn-primary">
+              Adicionar
+            </button>
+          </Link>
+        </div>
+        <div style={{ boxShadow: '10px 10px 10px' }}>
+          <table className="table table-hover table-dark">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>Endereço</th>
+                <th>Telefone</th>
+                <th>Email</th>
+                <th>Atualizar</th>
+                <th>Deletar</th>
+              </tr>
+            </thead>
+            <tbody>
+              {users.map((user) => {
+                const { id, nome, end, telefone, email } = user;
 
-              return (
-                <tr key={id}>
-                  <td>{id} </td>
-                  <td>{nome}</td>
-                  <td>{end}</td>
-                  <td>{telefone}</td>
-                  <td>{email}</td>
-                  <td>
-                    <Link to={`/alterarCliente/${id}`}>
-                      <button
-                        type="button"
-                        className="btn btn-warning"
-                        style={{
-                          marginRight: '10px',
-                          color: 'white',
-                          fontWeight: 'bold',
-                        }}
-                      >
-                        Alterar
-                      </button>
-                    </Link>
-                  </td>
+                return (
+                  <tr key={id}>
+                    <td>{id} </td>
+                    <td>{nome}</td>
+                    <td>{end}</td>
+                    <td>{telefone}</td>
+                    <td>{email}</td>
+                    <td>
+                      <Link to={`/alterarCliente/${id}`}>
+                        <button
+                          type="button"
+                          className="btn btn-warning"
+                          style={{
+                            color: 'white',
+                            fontWeight: 'bold',
+                          }}
+                        >
+                          Alterar
+                        </button>
+                      </Link>
+                    </td>
 
-                  <td>
-                    <Link to={`/deletarCliente/${id}`}>
-                      <button
-                        type="button"
-                        className="btn btn-danger"
-                        style={{
-                          marginRight: '10px',
-                          color: 'white',
-                          fontWeight: 'bold',
-                        }}
-                      >
-                        Apagar
-                      </button>
-                    </Link>
-                  </td>
-                </tr>
-              );
-            })}
-          </tbody>
-        </table>
+                    <td>
+                      <Link to={`/deletarCliente/${id}`}>
+                        <button
+                          type="button"
+                          className="btn btn-danger"
+                          style={{
+                            color: 'white',
+                            fontWeight: 'bold',
+                          }}
+                        >
+                          Apagar
+                        </button>
+                      </Link>
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   );

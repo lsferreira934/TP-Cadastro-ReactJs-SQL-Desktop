@@ -54,13 +54,19 @@ export default function Requests() {
   return (
     <>
       <div className="container">
-        <h2>Pedidos</h2>
+        <div style={{ boxShadow: '10px 10px 10px', marginTop: '15px' }}>
+          <h2>Pedidos</h2>
+        </div>
+
         <Link to="/novopedido">
           <button type="button" className="btn btn-success">
             Novo pedido
           </button>
         </Link>
-        <div className="row">
+        <div
+          className="row"
+          style={{ display: 'flex', justifyContent: 'center' }}
+        >
           {requests.map((order) => {
             const {
               Codigo_Pedido,

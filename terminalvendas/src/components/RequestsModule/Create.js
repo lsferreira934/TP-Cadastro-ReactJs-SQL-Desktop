@@ -327,6 +327,7 @@ export default function Create() {
                               value={id}
                               style={{
                                 color: 'white',
+                                fontWeight: 'bold',
                               }}
                             >
                               Apagar

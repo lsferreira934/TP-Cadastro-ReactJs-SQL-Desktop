@@ -46,7 +46,7 @@ export default function Update(props) {
     <div className="container center" align="center">
       <h2>Deseja apagar o seguinte cadastro?</h2>
 
-      <div id={css.form}>
+      <div id={css.form} style={{ boxShadow: '10px 10px 10px' }}>
         <Form initialData={initialData} onSubmit={handleSubmit}>
           <div className="form">
             <div className="form">
