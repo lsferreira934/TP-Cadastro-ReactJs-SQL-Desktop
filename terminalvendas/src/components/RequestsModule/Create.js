@@ -171,6 +171,7 @@ export default function Create() {
           </div>
         </div>
         {userId ? (
+          // IGUAL
           <Form onSubmit={handleSubmit}>
             <div
               className="row"
@@ -248,6 +249,9 @@ export default function Create() {
                 </Link>
               </div>
             </div>
+            {/* // IGUAL */}
+
+            {/* tabela produtos */}
             <div className="row" style={{ marginTop: '10px' }}>
               <div className="col-10">
                 <table className="table table-hover table-dark">
@@ -298,9 +302,11 @@ export default function Create() {
                 </table>
               </div>
             </div>
+
             {redirectCheck === true ? <Redirect to="/" /> : redirectCheck}
           </Form>
         ) : (
+          // IGUAL
           <Form onSubmit={handleSubmit}>
             <div
               className="row"
@@ -389,6 +395,7 @@ export default function Create() {
             <div className="row" style={{ marginTop: '10px' }}>
               <div className="col-10"></div>
             </div>
+            {/* // IGUAL */}
             {redirectCheck === true ? <Redirect to="/" /> : redirectCheck}
           </Form>
         )}
